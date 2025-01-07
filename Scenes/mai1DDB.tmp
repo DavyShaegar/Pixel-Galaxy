@@ -1,0 +1,189 @@
+[gd_scene load_steps=10 format=3 uid="uid://c0kfdukuaxugo"]
+
+[ext_resource type="Script" path="res://Scripts/StartMenu.gd" id="1_0tbby"]
+[ext_resource type="PackedScene" uid="uid://cxxs0mrfairua" path="res://Scenes/menu_buttons.tscn" id="2_6hktp"]
+[ext_resource type="Texture2D" uid="uid://cln6l0bp7oqyb" path="res://Graphics/Background/MenuParallax.png" id="2_41ifx"]
+[ext_resource type="Texture2D" uid="uid://bfx5dwo0ks1ys" path="res://Graphics/Background/MenuBackground.png" id="3_h1wvb"]
+[ext_resource type="FontFile" uid="uid://bqryjkuqu52d6" path="res://Graphics/Styles/ethnocentric rg.otf" id="4_uxlx5"]
+[ext_resource type="Texture2D" uid="uid://cfg52x6v8rq66" path="res://Graphics/github-mark-white.png" id="6_elcfh"]
+[ext_resource type="StyleBox" uid="uid://dy8sord05mw3t" path="res://Graphics/Styles/socialbuttons.tres" id="6_jhfkh"]
+[ext_resource type="StyleBox" uid="uid://6utb8iv65urn" path="res://Graphics/Styles/socialbuttons_hover.tres" id="7_87kwv"]
+[ext_resource type="StyleBox" uid="uid://diju608hk6ibr" path="res://Graphics/Styles/socialbuttons_press.tres" id="8_rjjc0"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0tbby")
+Buttons = ExtResource("2_6hktp")
+
+[node name="FrontLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="FrontLayer"]
+position = Vector2(300, 400)
+texture = ExtResource("2_41ifx")
+
+[node name="BackLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="BackLayer"]
+position = Vector2(300, 400)
+texture = ExtResource("3_h1wvb")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="UILayer"]
+offset_right = 600.0
+offset_bottom = 384.0
+
+[node name="Title" type="Label" parent="UILayer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("4_uxlx5")
+theme_override_font_sizes/font_size = 50
+text = "Pixel Galaxy"
+
+[node name="UIMenuButtons" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 208.0
+offset_top = 384.0
+offset_right = 208.0
+offset_bottom = 384.0
+
+[node name="Title" type="Label" parent="UILayer"]
+offset_left = 264.0
+offset_top = 760.0
+offset_right = 591.0
+offset_bottom = 785.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_uxlx5")
+theme_override_font_sizes/font_size = 20
+text = "Davy Shaegar - 2024"
+
+[node name="Button" type="Button" parent="UILayer"]
+offset_left = 8.0
+offset_top = 688.0
+offset_right = 71.0
+offset_bottom = 728.0
+text = "Credits
+"
+
+[node name="Github" type="Button" parent="UILayer"]
+offset_left = 8.0
+offset_top = 736.0
+offset_right = 258.0
+offset_bottom = 981.0
+scale = Vector2(0.25, 0.25)
+tooltip_text = "Github repository"
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = ExtResource("6_jhfkh")
+theme_override_styles/hover = ExtResource("7_87kwv")
+theme_override_styles/pressed = ExtResource("8_rjjc0")
+icon = ExtResource("6_elcfh")
+
+[node name="GameProfiles" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="UILayer/GameProfiles"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 225.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 30
+text = "Game Profiles: "
+
+[node name="Profiles" type="OptionButton" parent="UILayer/GameProfiles"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 50.2996
+offset_right = 192.0
+offset_bottom = 90.2996
+rotation = -0.00170205
+theme_override_fonts/font = ExtResource("4_uxlx5")
+theme_override_font_sizes/font_size = 15
+alignment = 1
+text_overrun_behavior = 2
+item_count = 2
+popup/item_0/text = "Add New Profile"
+popup/item_0/id = 0
+popup/item_1/text = ""
+popup/item_1/id = 0
+popup/item_1/disabled = true
+popup/item_1/separator = true
+
+[node name="NewProfileBox" type="LineEdit" parent="UILayer/GameProfiles"]
+visible = false
+layout_mode = 0
+offset_left = 208.0
+offset_top = 56.0
+offset_right = 384.0
+offset_bottom = 88.0
+placeholder_text = "Insert Name Here"
+alignment = 1
+max_length = 9
+
+[node name="ErrorTooLong" type="Label" parent="UILayer/GameProfiles"]
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 98.2996
+offset_right = 467.0
+offset_bottom = 126.3
+theme_override_colors/font_color = Color(1, 0, 0, 0.768627)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "Profile name must be less than 10 characters"
+
+[node name="ErrorAlreadyExists" type="Label" parent="UILayer/GameProfiles"]
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 120.0
+offset_right = 467.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(1, 0, 0, 0.768627)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "Profile already Exists"
+
+[node name="Delete" type="Button" parent="UILayer/GameProfiles"]
+visible = false
+layout_mode = 0
+offset_left = 408.0
+offset_top = 8.0
+offset_right = 588.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("4_uxlx5")
+theme_override_font_sizes/font_size = 15
+text = "Delete Profile"
+
+[connection signal="mouse_entered" from="UILayer/Github" to="." method="_on_github_mouse_entered"]
+[connection signal="pressed" from="UILayer/Github" to="." method="_on_github_pressed"]
+[connection signal="item_selected" from="UILayer/GameProfiles/Profiles" to="." method="_on_profiles_item_selected"]
+[connection signal="text_change_rejected" from="UILayer/GameProfiles/NewProfileBox" to="." method="_on_new_profile_box_text_change_rejected"]
+[connection signal="text_changed" from="UILayer/GameProfiles/NewProfileBox" to="." method="_on_new_profile_box_text_changed"]
+[connection signal="text_submitted" from="UILayer/GameProfiles/NewProfileBox" to="." method="_on_new_profile_box_text_submitted"]
+[connection signal="pressed" from="UILayer/GameProfiles/Delete" to="." method="_on_delete_pressed"]

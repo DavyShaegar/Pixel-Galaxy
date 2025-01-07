@@ -1,0 +1,143 @@
+[gd_scene load_steps=18 format=3 uid="uid://bs84y7g1caou"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_dreadnought.gd" id="1_evnav"]
+[ext_resource type="Texture2D" uid="uid://dj57ty3uvrpi7" path="res://Graphics/Enemies/Deaths/Kla'ed - Dreadnought - Destruction.png" id="2_hjww0"]
+[ext_resource type="Texture2D" uid="uid://b3jyrffm6xo5m" path="res://Graphics/Enemies/Kla'ed - Dreadnought - Base.png" id="3_kd5xc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqm3t"]
+atlas = ExtResource("2_hjww0")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mujuc"]
+atlas = ExtResource("2_hjww0")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8vbl"]
+atlas = ExtResource("2_hjww0")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nd4du"]
+atlas = ExtResource("2_hjww0")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eop8"]
+atlas = ExtResource("2_hjww0")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svvun"]
+atlas = ExtResource("2_hjww0")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aaall"]
+atlas = ExtResource("2_hjww0")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48tnv"]
+atlas = ExtResource("2_hjww0")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fe4lj"]
+atlas = ExtResource("2_hjww0")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sveit"]
+atlas = ExtResource("2_hjww0")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsqi2"]
+atlas = ExtResource("2_hjww0")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx3t7"]
+atlas = ExtResource("2_hjww0")
+region = Rect2(1408, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bu7g4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqm3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mujuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8vbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nd4du")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eop8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svvun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aaall")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48tnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fe4lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sveit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsqi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx3t7")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kd5xc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wavr"]
+radius = 31.1111
+height = 120.0
+
+[node name="Dreadnought" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 132
+script = ExtResource("1_evnav")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_bu7g4")
+animation = &"death"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.90735e-06, 0)
+scale = Vector2(1.8, 1.2)
+shape = SubResource("CapsuleShape2D_0wavr")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 512)
+
+[node name="shotcooldown" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="movecooldown" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="healerSpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="shotcooldown" to="." method="_on_shotcooldown_timeout"]
+[connection signal="timeout" from="movecooldown" to="." method="_on_movecooldown_timeout"]
+[connection signal="timeout" from="healerSpawnTimer" to="." method="_on_healer_spawn_timer_timeout"]

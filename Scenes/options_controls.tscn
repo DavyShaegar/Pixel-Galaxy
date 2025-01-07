@@ -1,0 +1,149 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca2s366vlqew7"]
+
+[ext_resource type="Script" path="res://Scripts/options_controls.gd" id="1_o0fas"]
+[ext_resource type="Script" path="res://Scripts/remapkey.gd" id="2_ttbi1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27ac0"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0.109804, 0.254902, 0.776471)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 2.0
+
+[node name="options_controls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -64.0
+offset_right = -96.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o0fas")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(450, 300)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.67
+anchor_bottom = 0.315
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_27ac0")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Move Up" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+text = "Move Up  -"
+
+[node name="Move Down" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+text = "Move Down  -"
+
+[node name="Move Left" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+text = "Move Left  -"
+
+[node name="Move Right" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+text = "Move Right  -"
+
+[node name="Shoot" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+text = "Shoot  -"
+
+[node name="Pause" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+text = "Pause / Menu  -"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CommandsContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(200, 175)
+layout_mode = 2
+
+[node name="Up" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/CommandsContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "I"
+script = ExtResource("2_ttbi1")
+action = "Up"
+
+[node name="Down" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/CommandsContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "Hated"
+script = ExtResource("2_ttbi1")
+action = "Down"
+
+[node name="Left" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/CommandsContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "This"
+script = ExtResource("2_ttbi1")
+action = "Left"
+
+[node name="Right" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/CommandsContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "Part"
+script = ExtResource("2_ttbi1")
+action = "Right"
+
+[node name="Shoot" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/CommandsContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "Help"
+script = ExtResource("2_ttbi1")
+action = "Shoot"
+
+[node name="Pause" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/CommandsContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "Me"
+script = ExtResource("2_ttbi1")
+action = "Pause"
+
+[node name="Back" type="Button" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+mouse_default_cursor_shape = 2
+text = "Back"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/Back" to="." method="_on_back_pressed"]

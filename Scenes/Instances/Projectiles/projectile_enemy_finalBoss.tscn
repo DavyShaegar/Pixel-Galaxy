@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://dyfb85y0wn5xk"]
+
+[ext_resource type="Script" path="res://Scripts/projectile_enemy_finalBoss.gd" id="1_2pv8r"]
+[ext_resource type="Texture2D" uid="uid://ttyu6n7qj4pc" path="res://Graphics/Effects/FinalBoss_shot.png" id="2_i0vl3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yn551"]
+size = Vector2(45.7143, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_geftt"]
+atlas = ExtResource("2_i0vl3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veb86"]
+atlas = ExtResource("2_i0vl3")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee035"]
+atlas = ExtResource("2_i0vl3")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu8ww"]
+atlas = ExtResource("2_i0vl3")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18jq0"]
+atlas = ExtResource("2_i0vl3")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xu1sx"]
+atlas = ExtResource("2_i0vl3")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fxyg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_geftt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veb86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee035")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu8ww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18jq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xu1sx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="ProjectileEnemyFinalBoss" type="Area2D"]
+scale = Vector2(2, 2)
+collision_layer = 8
+collision_mask = 65
+script = ExtResource("1_2pv8r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.7, 2)
+shape = SubResource("RectangleShape2D_yn551")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 3.14159
+sprite_frames = SubResource("SpriteFrames_3fxyg")
+frame_progress = 0.808369
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

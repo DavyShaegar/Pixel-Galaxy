@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw1ky6hikw4b8"]
+
+[ext_resource type="Script" path="res://Scripts/projectile_enemy_base.gd" id="1_58v58"]
+[ext_resource type="Texture2D" uid="uid://biujkf16uirn" path="res://Graphics/Effects/enemy_base_shot.png" id="1_q7vit"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xuk73"]
+radius = 8.0
+
+[node name="projectile_enemy_base" type="Area2D"]
+collision_layer = 8
+collision_mask = 65
+script = ExtResource("1_58v58")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_xuk73")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.8, 0.5)
+texture = ExtResource("1_q7vit")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

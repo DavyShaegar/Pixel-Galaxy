@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjg3hwt6keb3y"]
+
+[ext_resource type="Script" path="res://Scripts/projectile_player_base.gd" id="1_g8k5s"]
+[ext_resource type="Texture2D" uid="uid://c5l6s07opokos" path="res://Graphics/Effects/base_shot.png" id="2_wswcd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okpr2"]
+
+[node name="projectile_player_base" type="Area2D"]
+collision_layer = 4
+collision_mask = 18
+script = ExtResource("1_g8k5s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.7, 2)
+shape = SubResource("CapsuleShape2D_okpr2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_wswcd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

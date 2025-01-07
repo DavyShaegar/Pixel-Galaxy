@@ -1,0 +1,155 @@
+[gd_scene load_steps=19 format=3 uid="uid://co4p2frqjlvre"]
+
+[ext_resource type="Texture2D" uid="uid://bsfa1ow1g3tk7" path="res://Graphics/Effects/healerHeal.png" id="1_xn5yg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de7mu"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkwlp"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld1y8"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul8k1"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_me0sl"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(256, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipgrh"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(320, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aktlv"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(384, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6wdb"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(448, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwg6v"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(512, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ghwd"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(576, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2k0p"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(640, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77igj"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(704, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_telph"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(768, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5gg2"]
+atlas = ExtResource("1_xn5yg")
+region = Rect2(832, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xejnr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de7mu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkwlp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld1y8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul8k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_me0sl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipgrh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aktlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6wdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwg6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ghwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2k0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77igj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_telph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5gg2")
+}],
+"loop": false,
+"name": &"default",
+"speed": 18.0
+}]
+
+[sub_resource type="Animation" id="Animation_fexhg"]
+resource_name = "activate"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [13, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nnxx4"]
+_data = {
+"activate": SubResource("Animation_fexhg")
+}
+
+[node name="HealGfx" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xejnr")
+frame = 13
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nnxx4")
+}
+autoplay = "activate"

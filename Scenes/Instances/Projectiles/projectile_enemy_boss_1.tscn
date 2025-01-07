@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://crtwo3cliusww"]
+
+[ext_resource type="Script" path="res://Scripts/projectile_enemy_boss_1.gd" id="1_4uof2"]
+[ext_resource type="Texture2D" uid="uid://daqi3buwr3tdh" path="res://Graphics/Effects/boss_1_shot.png" id="2_ajgil"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_41jdh"]
+radius = 11.4286
+height = 32.0
+
+[node name="ProjectileEnemyBoss1" type="Area2D"]
+collision_layer = 8
+collision_mask = 65
+script = ExtResource("1_4uof2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.7, 2)
+shape = SubResource("CapsuleShape2D_41jdh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_ajgil")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

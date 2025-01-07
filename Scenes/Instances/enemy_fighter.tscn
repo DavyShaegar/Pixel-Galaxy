@@ -1,0 +1,110 @@
+[gd_scene load_steps=15 format=3 uid="uid://btfdki80jpejt"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_fighter.gd" id="1_4ih6l"]
+[ext_resource type="Texture2D" uid="uid://dhmullu321gdf" path="res://Graphics/Enemies/Deaths/Kla'ed - Fighter - Destruction.png" id="2_361vi"]
+[ext_resource type="Texture2D" uid="uid://dgtlqi7nnt6kt" path="res://Graphics/Enemies/Kla'ed - Fighter - Base.png" id="2_ummdr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxnxs"]
+atlas = ExtResource("2_361vi")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgrt7"]
+atlas = ExtResource("2_361vi")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6jb8"]
+atlas = ExtResource("2_361vi")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmvbt"]
+atlas = ExtResource("2_361vi")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryxou"]
+atlas = ExtResource("2_361vi")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucs7f"]
+atlas = ExtResource("2_361vi")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usmlx"]
+atlas = ExtResource("2_361vi")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iig1h"]
+atlas = ExtResource("2_361vi")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwolm"]
+atlas = ExtResource("2_361vi")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_027yr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxnxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgrt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6jb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmvbt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryxou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucs7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usmlx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iig1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwolm")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ummdr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ngsuw"]
+
+[node name="EnemyFighter" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 133
+script = ExtResource("1_4ih6l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_027yr")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.8, 1.2)
+shape = SubResource("CapsuleShape2D_ngsuw")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 384)
+
+[node name="shotcooldown" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="shotcooldown" to="." method="_on_shotcooldown_timeout"]

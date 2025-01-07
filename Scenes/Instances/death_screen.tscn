@@ -1,0 +1,122 @@
+[gd_scene load_steps=6 format=3 uid="uid://drahmk852kmt1"]
+
+[ext_resource type="Script" path="res://Scripts/death_screen.gd" id="1_q0oid"]
+[ext_resource type="FontFile" uid="uid://bqryjkuqu52d6" path="res://Graphics/Styles/ethnocentric rg.otf" id="2_h5muv"]
+[ext_resource type="Texture2D" uid="uid://ctv105v5kxi54" path="res://Graphics/PC/Death/skull.png" id="3_k7u3m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n4i8s"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0.478431)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rdloh"]
+texture = ExtResource("3_k7u3m")
+modulate_color = Color(1, 1, 1, 0.686275)
+
+[node name="DeathScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q0oid")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = -160.0
+offset_top = -128.0
+offset_right = 160.0
+offset_bottom = 128.0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n4i8s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="separator" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_h5muv")
+theme_override_font_sizes/font_size = 25
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_rdloh")
+
+[node name="separator2" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="HBoxContaner" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Resume" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/HBoxContaner"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_h5muv")
+text = "Retry"
+
+[node name="separator" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/HBoxContaner"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="QuitMenu" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/HBoxContaner"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_h5muv")
+text = "Quit To 
+menu"
+
+[node name="separator3" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="QuitDesktop" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_h5muv")
+text = "Quit To Desktop"
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/HBoxContaner/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/HBoxContaner/QuitMenu" to="." method="_on_quit_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/QuitDesktop" to="." method="_on_quit_desktop_pressed"]

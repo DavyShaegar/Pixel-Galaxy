@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2n7oqr42ov45"]
+
+[ext_resource type="Script" path="res://Scripts/projectyle_enemy_heavy.gd" id="1_hgx4e"]
+[ext_resource type="Texture2D" uid="uid://d2ql3bukeix6a" path="res://Graphics/Effects/heavy_shot.png" id="2_5efam"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_61i22"]
+radius = 8.0
+height = 48.0
+
+[node name="ProjectyleEnemyHeavy" type="Area2D"]
+collision_layer = 8
+collision_mask = 65
+script = ExtResource("1_hgx4e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_5efam")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_61i22")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

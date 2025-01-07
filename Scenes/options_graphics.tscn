@@ -1,0 +1,120 @@
+[gd_scene load_steps=3 format=3 uid="uid://iwobpbturntd"]
+
+[ext_resource type="Script" path="res://Scripts/options_graphics.gd" id="1_l6s48"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wvav"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0.109804, 0.254902, 0.65098)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 2.0
+
+[node name="options_graphics" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6s48")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 104.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3wvav")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Resolution"
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+visibility_layer = 0
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+item_count = 12
+selected = 7
+popup/item_0/text = "4:3 Ratio"
+popup/item_0/id = 0
+popup/item_0/separator = true
+popup/item_1/text = "2048x1536"
+popup/item_1/id = 1
+popup/item_2/text = "1024x768 "
+popup/item_2/id = 2
+popup/item_3/text = "800x600"
+popup/item_3/id = 3
+popup/item_4/text = "3:4 Ratio"
+popup/item_4/id = 4
+popup/item_4/separator = true
+popup/item_5/text = "1536x2048"
+popup/item_5/id = 5
+popup/item_6/text = "768x1024"
+popup/item_6/id = 6
+popup/item_7/text = "600x800 (default)"
+popup/item_7/id = 7
+popup/item_8/text = "16:9 ratio"
+popup/item_8/id = 8
+popup/item_8/separator = true
+popup/item_9/text = "1920x1080"
+popup/item_9/id = 9
+popup/item_10/text = "1280x720"
+popup/item_10/id = 10
+popup/item_11/text = "640x360"
+popup/item_11/id = 11
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+visibility_layer = 0
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+visibility_layer = 0
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/VBoxContainer"]
+visibility_layer = 0
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Back" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Back"
+
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/HBoxContainer2/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer3/Back" to="." method="_on_back_pressed"]

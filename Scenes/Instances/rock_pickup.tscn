@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://504od0akmc3w"]
+
+[ext_resource type="Script" path="res://Scripts/pickups.gd" id="1_nu50a"]
+[ext_resource type="Texture2D" uid="uid://bvyuv17b1ibwg" path="res://Graphics/Interface.png" id="2_u2arg"]
+[ext_resource type="Texture2D" uid="uid://buq0xbfkp50vu" path="res://Graphics/PC/weapons/Main Ship - Weapons - Rockets.png" id="2_xk86q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jae08"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmh61"]
+atlas = ExtResource("2_u2arg")
+region = Rect2(448, 48, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfwsg"]
+atlas = ExtResource("2_u2arg")
+region = Rect2(480, 48, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn0qc"]
+atlas = ExtResource("2_u2arg")
+region = Rect2(512, 48, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7n7q"]
+atlas = ExtResource("2_u2arg")
+region = Rect2(544, 48, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ld7d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmh61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfwsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn0qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7n7q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="RockPickup" type="Area2D"]
+collision_layer = 32
+script = ExtResource("1_nu50a")
+
+[node name="RocketLauncher" type="Node" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jae08")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_xk86q")
+hframes = 17
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8ld7d")
+frame = 1
+frame_progress = 0.327058
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

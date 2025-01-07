@@ -1,0 +1,16 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgf5tk6o3xm85"]
+
+[ext_resource type="Script" path="res://Scripts/Autoloads/level_handler.gd" id="1_7h350"]
+[ext_resource type="PackedScene" uid="uid://btfdki80jpejt" path="res://Scenes/Instances/enemy_fighter.tscn" id="2_1i3s0"]
+[ext_resource type="PackedScene" uid="uid://b3ihxxc4cfooe" path="res://Scenes/Instances/enemy_heavy.tscn" id="3_8cktm"]
+[ext_resource type="PackedScene" uid="uid://ckhcaotfnev0l" path="res://Scenes/Instances/enemy_battlecruiser.tscn" id="4_f1c61"]
+[ext_resource type="PackedScene" uid="uid://bo27y3j1824ue" path="res://Scenes/Instances/enemy_healer.tscn" id="5_np15b"]
+[ext_resource type="PackedScene" uid="uid://db2s2ihp675l6" path="res://Scenes/Instances/enemy_torpedo.tscn" id="6_5pxyi"]
+
+[node name="LevelHandler" type="Node"]
+script = ExtResource("1_7h350")
+base_enemy = ExtResource("2_1i3s0")
+heavy_enemy = ExtResource("3_8cktm")
+boss = ExtResource("4_f1c61")
+Healer = ExtResource("5_np15b")
+Enemy_Rocket = ExtResource("6_5pxyi")

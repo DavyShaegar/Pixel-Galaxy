@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3b1i5iulc6hj"]
+
+[ext_resource type="Script" path="res://Scripts/control_button.gd" id="1_gul45"]
+
+[node name="control_button" type="Button"]
+custom_minimum_size = Vector2(0, 25)
+offset_right = 128.0
+offset_bottom = 31.0
+toggle_mode = true
+text = "..."
+script = ExtResource("1_gul45")

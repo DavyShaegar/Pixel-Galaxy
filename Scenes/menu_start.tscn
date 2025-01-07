@@ -1,0 +1,120 @@
+[gd_scene load_steps=6 format=3 uid="uid://5vllqg7pnm8l"]
+
+[ext_resource type="Script" path="res://Scripts/menu_start.gd" id="1_hbkii"]
+[ext_resource type="PackedScene" uid="uid://dlqwixs38k8to" path="res://Scenes/Instances/button.tscn" id="1_lsh3i"]
+[ext_resource type="FontFile" uid="uid://bqryjkuqu52d6" path="res://Graphics/Styles/ethnocentric rg.otf" id="2_qwx4q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0mvjh"]
+bg_color = Color(0, 0, 0.254902, 0.501961)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m63j5"]
+bg_color = Color(0, 0, 0, 0.247059)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0.184314, 0.529412)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="MenuStart" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -200.0
+offset_top = -64.0
+offset_right = -200.0
+offset_bottom = -64.0
+script = ExtResource("1_hbkii")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -16.0
+offset_right = 572.0
+offset_bottom = 304.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0mvjh")
+
+[node name="Story" parent="Panel" instance=ExtResource("1_lsh3i")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 112.0
+offset_right = 208.0
+offset_bottom = 176.0
+text = "Story Mode"
+
+[node name="Label" type="Label" parent="Panel/Story"]
+layout_mode = 0
+offset_left = -15.0
+offset_top = 80.0
+offset_right = 211.0
+offset_bottom = 121.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qwx4q")
+theme_override_font_sizes/font_size = 15
+text = "3 Levels 
+Good for practice"
+horizontal_alignment = 1
+
+[node name="Endless" parent="Panel" instance=ExtResource("1_lsh3i")]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 112.0
+offset_right = 520.0
+offset_bottom = 176.0
+text = "Endless"
+
+[node name="Label" type="Label" parent="Panel/Endless"]
+layout_mode = 0
+offset_left = -15.0
+offset_top = 80.0
+offset_right = 211.0
+offset_bottom = 121.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qwx4q")
+theme_override_font_sizes/font_size = 15
+text = "Main Game Mode
+Random Waves
+*WIP*"
+horizontal_alignment = 1
+
+[node name="Back" parent="Panel" instance=ExtResource("1_lsh3i")]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 252.0
+offset_right = 370.0
+offset_bottom = 284.0
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+text = "Back
+"
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 34.0
+offset_right = 373.0
+offset_bottom = 61.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_qwx4q")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_m63j5")
+text = "Game Modes"
+
+[connection signal="pressed" from="Panel/Story" to="." method="_on_story_pressed"]
+[connection signal="pressed" from="Panel/Endless" to="." method="_on_endless_pressed"]
+[connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]

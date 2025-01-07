@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://byqobkn5q7g8y"]
+
+[ext_resource type="PackedScene" uid="uid://b3ihxxc4cfooe" path="res://Scenes/Instances/enemy_heavy.tscn" id="1_wywoa"]
+[ext_resource type="PackedScene" uid="uid://btfdki80jpejt" path="res://Scenes/Instances/enemy_fighter.tscn" id="2_gi2tg"]
+[ext_resource type="PackedScene" uid="uid://bo27y3j1824ue" path="res://Scenes/Instances/enemy_healer.tscn" id="3_hsi5f"]
+[ext_resource type="PackedScene" uid="uid://diqwy5b33riv2" path="res://Scenes/Instances/player.tscn" id="4_l7f60"]
+[ext_resource type="PackedScene" uid="uid://db2s2ihp675l6" path="res://Scenes/Instances/enemy_torpedo.tscn" id="5_sne0b"]
+
+[node name="Test_Showcase" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Enemy_Heavy" parent="." instance=ExtResource("1_wywoa")]
+position = Vector2(112, 80)
+script = null
+
+[node name="Label" type="Label" parent="Enemy_Heavy"]
+offset_left = -48.0
+offset_top = 40.0
+offset_right = 46.0
+offset_bottom = 89.0
+text = "Incrociatore"
+
+[node name="EnemyFighter" parent="." instance=ExtResource("2_gi2tg")]
+position = Vector2(384, 88)
+script = null
+
+[node name="Label" type="Label" parent="EnemyFighter"]
+offset_left = -40.0
+offset_top = 40.0
+offset_right = 54.0
+offset_bottom = 89.0
+text = "Cacciatore"
+
+[node name="EnemyHealer" parent="." instance=ExtResource("3_hsi5f")]
+position = Vector2(256, 80)
+script = null
+
+[node name="Label" type="Label" parent="EnemyHealer"]
+offset_left = -32.0
+offset_top = 48.0
+offset_right = 62.0
+offset_bottom = 97.0
+text = "Curatore"
+
+[node name="Player" parent="." instance=ExtResource("4_l7f60")]
+position = Vector2(256, 456)
+pause_menu = null
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.5, 1.5)
+
+[node name="Label" type="Label" parent="Player"]
+offset_left = -40.0
+offset_top = 40.0
+offset_right = 36.0
+offset_bottom = 63.0
+text = "Giocatore"
+
+[node name="EnemyTorpedo" parent="." instance=ExtResource("5_sne0b")]
+position = Vector2(256, 208)

@@ -1,0 +1,274 @@
+[gd_scene load_steps=17 format=3 uid="uid://bf6ik8d6m83a1"]
+
+[ext_resource type="PackedScene" uid="uid://diqwy5b33riv2" path="res://Scenes/Instances/player.tscn" id="1_l0haa"]
+[ext_resource type="Texture2D" uid="uid://myru4tvq4xcw" path="res://Graphics/Background/Endless/Dust.png" id="1_ycd60"]
+[ext_resource type="Script" path="res://Scripts/endless.gd" id="1_yq1gr"]
+[ext_resource type="Texture2D" uid="uid://x8qxbhpi8trm" path="res://Graphics/Background/Endless/Nebula.png" id="2_8mkd5"]
+[ext_resource type="Texture2D" uid="uid://cm75nvltmc5x1" path="res://Graphics/Background/Endless/Planets.png" id="3_u5lm2"]
+[ext_resource type="Texture2D" uid="uid://djcqfn5eu7m3u" path="res://Graphics/Background/Endless/Background.png" id="5_k3ec2"]
+[ext_resource type="FontFile" uid="uid://bqryjkuqu52d6" path="res://Graphics/Styles/ethnocentric rg.otf" id="6_ak5yy"]
+[ext_resource type="Texture2D" uid="uid://bu266bnebutil" path="res://Graphics/PC/HP_Icon.png" id="7_h0unl"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_j1fte"]
+a = Vector2(-320, 0)
+b = Vector2(280, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_kku6n"]
+a = Vector2(0, -384)
+b = Vector2(0, 416)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_pjgag"]
+a = Vector2(0, -384)
+b = Vector2(0, 416)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_o0ple"]
+a = Vector2(-320, 0)
+b = Vector2(280, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4b3e"]
+size = Vector2(600, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4in87"]
+size = Vector2(552, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxh1l"]
+size = Vector2(600, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vflge"]
+bg_color = Color(0, 0, 0, 0.313726)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0638021, 0.0636803, 0.495903, 1)
+border_blend = true
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="Endless" type="Node2D"]
+script = ExtResource("1_yq1gr")
+
+[node name="border" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border"]
+position = Vector2(320, 0)
+shape = SubResource("SegmentShape2D_j1fte")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="border"]
+position = Vector2(0, 384)
+shape = SubResource("SegmentShape2D_kku6n")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="border"]
+position = Vector2(600, 384)
+shape = SubResource("SegmentShape2D_pjgag")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="border"]
+position = Vector2(320, 800)
+shape = SubResource("SegmentShape2D_o0ple")
+
+[node name="RocketExplosionArea" type="StaticBody2D" parent="."]
+position = Vector2(320, 576)
+collision_layer = 256
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RocketExplosionArea"]
+position = Vector2(-16, 0)
+shape = SubResource("RectangleShape2D_u4b3e")
+
+[node name="SpawnArea" type="Area2D" parent="."]
+position = Vector2(296, -136)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea"]
+position = Vector2(4, 32)
+shape = SubResource("RectangleShape2D_4in87")
+
+[node name="Marker_positive" type="Marker2D" parent="SpawnArea"]
+position = Vector2(280, 128)
+
+[node name="Marker_negative" type="Marker2D" parent="SpawnArea"]
+position = Vector2(-272, -64)
+
+[node name="BossArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossArea"]
+position = Vector2(300, 162)
+shape = SubResource("RectangleShape2D_fxh1l")
+
+[node name="Boss_Stop_Left" type="Marker2D" parent="BossArea"]
+position = Vector2(64, 146)
+
+[node name="Boss_Stop_Middle" type="Marker2D" parent="BossArea"]
+position = Vector2(300, 146)
+
+[node name="Boss_Stop_Right" type="Marker2D" parent="BossArea"]
+position = Vector2(544, 146)
+
+[node name="DespawnArea" type="Area2D" parent="."]
+position = Vector2(320, 896)
+collision_layer = 64
+collision_mask = 42
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea"]
+position = Vector2(-16, 0)
+shape = SubResource("RectangleShape2D_u4b3e")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = -1
+scroll_offset = Vector2(766.673, -393.562)
+
+[node name="ParallaxLayer_4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 800)
+
+[node name="Dust" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_4"]
+position = Vector2(300, 400)
+texture = ExtResource("1_ycd60")
+
+[node name="ParallaxLayer_6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 800)
+
+[node name="Nebula" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_6"]
+position = Vector2(300, 400)
+texture = ExtResource("2_8mkd5")
+
+[node name="ParallaxLayer_3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 850)
+
+[node name="Planets" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_3"]
+position = Vector2(420, 332)
+rotation = -0.377026
+texture = ExtResource("3_u5lm2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="Background" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(300, 400)
+texture = ExtResource("5_k3ec2")
+
+[node name="Player" parent="." instance=ExtResource("1_l0haa")]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="label_score" type="Label" parent="CanvasLayer2"]
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 102.0
+offset_bottom = 31.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("6_ak5yy")
+text = "Score: "
+
+[node name="score" type="Label" parent="CanvasLayer2"]
+offset_left = 100.0
+offset_top = 8.0
+offset_right = 116.0
+offset_bottom = 31.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("6_ak5yy")
+text = "0"
+
+[node name="HealthBox" type="Label" parent="CanvasLayer2"]
+offset_left = 16.0
+offset_top = 708.0
+offset_right = 156.0
+offset_bottom = 784.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_vflge")
+
+[node name="label" type="Label" parent="CanvasLayer2/HealthBox"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 124.0
+offset_bottom = 31.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("6_ak5yy")
+theme_override_font_sizes/font_size = 18
+text = "Health:"
+
+[node name="Health" type="HBoxContainer" parent="CanvasLayer2/HealthBox"]
+clip_contents = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 37.0
+offset_right = 133.0
+offset_bottom = 68.0
+
+[node name="HpIcon" type="Sprite2D" parent="CanvasLayer2/HealthBox/Health"]
+position = Vector2(16, 16)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_h0unl")
+
+[node name="HpIcon2" type="Sprite2D" parent="CanvasLayer2/HealthBox/Health"]
+position = Vector2(48, 16)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_h0unl")
+
+[node name="HpIcon3" type="Sprite2D" parent="CanvasLayer2/HealthBox/Health"]
+position = Vector2(80, 16)
+scale = Vector2(0.492308, 0.509091)
+texture = ExtResource("7_h0unl")
+
+[node name="HpIcon4" type="Sprite2D" parent="CanvasLayer2/HealthBox/Health"]
+position = Vector2(112, 16)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_h0unl")
+
+[node name="Time" type="Label" parent="CanvasLayer2"]
+offset_left = 432.0
+offset_top = 745.0
+offset_right = 564.0
+offset_bottom = 768.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("6_ak5yy")
+text = "Time:
+"
+horizontal_alignment = 1
+
+[node name="ChangeLevelLayer" type="CanvasLayer" parent="."]
+
+[node name="Level" type="Label" parent="ChangeLevelLayer"]
+offset_left = 88.0
+offset_top = 328.0
+offset_right = 519.0
+offset_bottom = 429.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("6_ak5yy")
+theme_override_font_sizes/font_size = 40
+text = "Test"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerNode" type="Node" parent="."]
+
+[node name="Seconds" type="Timer" parent="TimerNode"]
+wait_time = 60.0
+autostart = true
+
+[node name="Shuffle" type="Timer" parent="TimerNode"]
+autostart = true
+
+[connection signal="body_entered" from="BossArea" to="." method="_on_boss_area_body_entered"]
+[connection signal="body_entered" from="DespawnArea" to="." method="_on_despawn_area_body_entered"]
+[connection signal="tree_entered" from="Player" to="." method="_on_player_tree_entered"]
+[connection signal="timeout" from="TimerNode/Seconds" to="." method="_on_seconds_timeout"]
+[connection signal="timeout" from="TimerNode/Shuffle" to="." method="_on_shuffle_timeout"]

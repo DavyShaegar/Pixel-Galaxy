@@ -1,0 +1,17 @@
+class_name EnemyProjectile
+extends Projectile
+
+func _ready():
+	damage = 1
+	speed = 300
+
+func _physics_process(delta):
+	position.y = position.y + (speed * delta)
+	
+func _on_body_entered(body):
+	if body is Player:
+		BehaviourFuncs.take_damage(damage, body.health, body, false)
+		queue_free()
+	else:
+		queue_free()
+

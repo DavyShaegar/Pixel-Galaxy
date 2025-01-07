@@ -1,0 +1,109 @@
+[gd_scene load_steps=24 format=3 uid="uid://d1wf08cux2d2a"]
+
+[ext_resource type="AudioStream" uid="uid://d3hv0hyj36lqe" path="res://Sounds/SFX/enemy_low_explosion.mp3" id="1_3qyr6"]
+[ext_resource type="Script" path="res://Scripts/Autoloads/GameSounds.gd" id="1_wdndf"]
+[ext_resource type="AudioStream" uid="uid://b52hrn3w8oo6r" path="res://Sounds/SFX/enemy_heavy_explosion.mp3" id="2_xphlv"]
+[ext_resource type="AudioStream" uid="uid://cjc2o3756cc5r" path="res://Sounds/Music/Race to Mars.mp3" id="3_ihsnq"]
+[ext_resource type="AudioStream" uid="uid://ctdh7v0i77h5f" path="res://Sounds/SFX/enemy_heavy_shot.mp3" id="3_v72d6"]
+[ext_resource type="AudioStream" uid="uid://b6yqw2bt52arq" path="res://Sounds/Music/Parabola.mp3" id="4_2b0e5"]
+[ext_resource type="AudioStream" uid="uid://dcgik0kuhh2r" path="res://Sounds/SFX/pickup_weapon.mp3" id="4_7ibui"]
+[ext_resource type="AudioStream" uid="uid://noafafdlqwjk" path="res://Sounds/Music/Billy's Sacrifice.mp3" id="4_v8qvh"]
+[ext_resource type="AudioStream" uid="uid://cw2c01u6exxmf" path="res://Sounds/Music/Crash Landing.mp3" id="5_5f6y2"]
+[ext_resource type="AudioStream" uid="uid://dt2domwvjk6kb" path="res://Sounds/Music/Checking Manifest.mp3" id="5_pn7g0"]
+[ext_resource type="AudioStream" uid="uid://dymop8pq2sny3" path="res://Sounds/Music/DOS-88 - Far away.mp3" id="7_83lsu"]
+[ext_resource type="AudioStream" uid="uid://shqj1o36n3vn" path="res://Sounds/SFX/beepd-86247.mp3" id="7_duruy"]
+[ext_resource type="AudioStream" uid="uid://cyoj4l28ll860" path="res://Sounds/SFX/impact.mp3" id="9_jp2wg"]
+[ext_resource type="AudioStream" uid="uid://c8mqw2jfwtb7s" path="res://Sounds/SFX/enemy_base_shoot_01.mp3" id="10_rfepe"]
+[ext_resource type="AudioStream" uid="uid://kx301q0m0lnh" path="res://Sounds/SFX/enemy_base_shoot_02.mp3" id="11_1wx6f"]
+[ext_resource type="AudioStream" uid="uid://d38gxuttdx8mg" path="res://Sounds/SFX/enemy_base_shoot_03.mp3" id="12_ju5ce"]
+[ext_resource type="AudioStream" uid="uid://6bgrvejnyub5" path="res://Sounds/SFX/repair_ship.mp3" id="13_f2a53"]
+[ext_resource type="AudioStream" uid="uid://0lsg8oj2253k" path="res://Sounds/SFX/lasershots_boss.mp3" id="13_hiu1o"]
+[ext_resource type="AudioStream" uid="uid://cobyk885ivsu0" path="res://Sounds/SFX/shockwave-105526.mp3" id="14_fa0ja"]
+[ext_resource type="AudioStream" uid="uid://b1scohqhfipos" path="res://Sounds/SFX/boss_01_explosion.mp3" id="14_vrceu"]
+[ext_resource type="AudioStream" uid="uid://ctijxitjqv6wf" path="res://Sounds/SFX/shields-up.mp3" id="15_506lc"]
+[ext_resource type="AudioStream" uid="uid://cwt85l34dctgh" path="res://Sounds/SFX/shields_down.mp3" id="16_v5stb"]
+[ext_resource type="AudioStream" uid="uid://cdtmobdbj5psh" path="res://Sounds/SFX/dreadnoughtShoot.mp3" id="22_6cosc"]
+
+[node name="GameSounds" type="Node"]
+script = ExtResource("1_wdndf")
+
+[node name="Music" type="Node" parent="."]
+
+[node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("5_pn7g0")
+
+[node name="Level1Music" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("3_ihsnq")
+volume_db = -10.0
+
+[node name="Level2Music" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("4_v8qvh")
+volume_db = -10.0
+
+[node name="Level3Music" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("5_5f6y2")
+
+[node name="EndlessMusic" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("4_2b0e5")
+
+[node name="ThanksMusic" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("7_83lsu")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Low_Boom" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("1_3qyr6")
+
+[node name="Heavy_Boom" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("2_xphlv")
+volume_db = -15.0
+pitch_scale = 0.6
+
+[node name="Heavy_Charge" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("3_v72d6")
+volume_db = -5.0
+pitch_scale = 1.5
+
+[node name="Pickup_Weapon" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("4_7ibui")
+volume_db = -2.5
+
+[node name="menu_select" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("7_duruy")
+
+[node name="Impact" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("9_jp2wg")
+volume_db = -10.0
+
+[node name="EnemyBase_Shoot_01" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("10_rfepe")
+volume_db = -2.5
+
+[node name="EnemyBase_Shoot_02" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("11_1wx6f")
+volume_db = -2.5
+
+[node name="EnemyBase_Shoot_03" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("12_ju5ce")
+volume_db = -2.5
+
+[node name="EnemyBoss01_shoot" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("13_hiu1o")
+
+[node name="EnemyBoss01_explosion" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("14_vrceu")
+
+[node name="Heal_Player" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("13_f2a53")
+
+[node name="pickup_nuclear" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("14_fa0ja")
+
+[node name="Invul_up" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("15_506lc")
+
+[node name="Invul_down" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("16_v5stb")
+
+[node name="DreadnoughtShoot" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("22_6cosc")

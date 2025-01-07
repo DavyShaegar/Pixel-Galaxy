@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://fq8x5xelu6oh"]
+
+[ext_resource type="Script" path="res://Scripts/Autoloads/level2.gd" id="1_gnjla"]
+[ext_resource type="PackedScene" uid="uid://btfdki80jpejt" path="res://Scenes/Instances/enemy_fighter.tscn" id="2_d2nxj"]
+[ext_resource type="PackedScene" uid="uid://b3ihxxc4cfooe" path="res://Scenes/Instances/enemy_heavy.tscn" id="3_vqfj7"]
+[ext_resource type="PackedScene" uid="uid://ckhcaotfnev0l" path="res://Scenes/Instances/enemy_battlecruiser.tscn" id="4_kovn5"]
+[ext_resource type="PackedScene" uid="uid://bo27y3j1824ue" path="res://Scenes/Instances/enemy_healer.tscn" id="5_4o2q6"]
+[ext_resource type="PackedScene" uid="uid://db2s2ihp675l6" path="res://Scenes/Instances/enemy_torpedo.tscn" id="6_hxo4f"]
+
+[node name="Level2" type="Node"]
+script = ExtResource("1_gnjla")
+base_enemy = ExtResource("2_d2nxj")
+heavy_enemy = ExtResource("3_vqfj7")
+boss = ExtResource("4_kovn5")
+Healer = ExtResource("5_4o2q6")
+Enemy_Rocket = ExtResource("6_hxo4f")
+
+[node name="Wave1_Start" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="FighterDelay" type="Timer" parent="Wave1_Start"]
+wait_time = 0.5
+
+[node name="WV_1_FighterStop" type="Timer" parent="Wave1_Start"]
+wait_time = 20.0
+one_shot = true
+
+[node name="HeavyDelay" type="Timer" parent="Wave1_Start"]
+wait_time = 2.0
+
+[node name="Heavy_FighterRowDelay" type="Timer" parent="Wave1_Start"]
+wait_time = 5.0
+
+[node name="WV_1HeavyStop" type="Timer" parent="Wave1_Start"]
+wait_time = 30.0
+one_shot = true
+
+[node name="Wave2_Start" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="HeavyDelay_2" type="Timer" parent="Wave2_Start"]
+
+[node name="HealerDelay" type="Timer" parent="Wave2_Start"]
+wait_time = 5.0
+
+[node name="WV_2FighterHealerStop" type="Timer" parent="Wave2_Start"]
+wait_time = 60.0
+one_shot = true
+
+[node name="Wave3_Start" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Heavy_row" type="Timer" parent="Wave3_Start"]
+wait_time = 4.0
+
+[node name="Healer_delay_2" type="Timer" parent="Wave3_Start"]
+wait_time = 5.0
+
+[node name="Boss_start" type="Timer" parent="Wave3_Start"]
+wait_time = 60.0
+one_shot = true
+
+[node name="Boss_minions_Fighter" type="Timer" parent="Wave3_Start"]
+wait_time = 0.75
+
+[connection signal="timeout" from="Wave1_Start" to="." method="_on_wave_1_start_timeout"]
+[connection signal="timeout" from="Wave1_Start/FighterDelay" to="." method="_on_fighter_delay_timeout"]
+[connection signal="timeout" from="Wave1_Start/WV_1_FighterStop" to="." method="_on_wv_1_fighter_stop_timeout"]
+[connection signal="timeout" from="Wave1_Start/HeavyDelay" to="." method="_on_heavy_delay_timeout"]
+[connection signal="timeout" from="Wave1_Start/Heavy_FighterRowDelay" to="." method="_on_heavy_fighter_row_delay_timeout"]
+[connection signal="timeout" from="Wave1_Start/WV_1HeavyStop" to="." method="_on_wv_1_heavy_stop_timeout"]
+[connection signal="timeout" from="Wave2_Start" to="." method="_on_wave_2_start_timeout"]
+[connection signal="timeout" from="Wave2_Start/HeavyDelay_2" to="." method="_on_fighter_delay_2_timeout"]
+[connection signal="timeout" from="Wave2_Start/HealerDelay" to="." method="_on_healer_delay_timeout"]
+[connection signal="timeout" from="Wave2_Start/WV_2FighterHealerStop" to="." method="_on_wv_2_fighter_healer_stop_timeout"]
+[connection signal="timeout" from="Wave3_Start" to="." method="_on_wave_3_start_timeout"]
+[connection signal="timeout" from="Wave3_Start/Heavy_row" to="." method="_on_heavy_row_timeout"]
+[connection signal="timeout" from="Wave3_Start/Healer_delay_2" to="." method="_on_healer_delay_2_timeout"]
+[connection signal="timeout" from="Wave3_Start/Boss_start" to="." method="_on_boss_start_timeout"]
+[connection signal="timeout" from="Wave3_Start/Boss_minions_Fighter" to="." method="_on_boss_minions_fighter_timeout"]

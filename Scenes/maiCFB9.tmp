@@ -1,0 +1,163 @@
+[gd_scene load_steps=19 format=3 uid="uid://u7pl5b7w7qwv"]
+
+[ext_resource type="Texture2D" uid="uid://cupu0kqecm4bn" path="res://Graphics/Background/parallax-space-backgound.png" id="1_duhdd"]
+[ext_resource type="Script" path="res://Scripts/main_game.gd" id="1_pm6lw"]
+[ext_resource type="Texture2D" uid="uid://bhm18voq7pi82" path="res://Graphics/Background/parallax-space-ring-planet.png" id="2_me67m"]
+[ext_resource type="Texture2D" uid="uid://cq5y6gcoqgrh0" path="res://Graphics/Background/parallax-space-big-planet.png" id="3_ll4lj"]
+[ext_resource type="Texture2D" uid="uid://hwnvnbyaylb5" path="res://Graphics/Background/parallax-space-far-planets.png" id="4_dtvj2"]
+[ext_resource type="Texture2D" uid="uid://bjjd6rol7f6qv" path="res://Graphics/Background/parallax-space-stars.png" id="5_fs5qk"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="7_02nh3"]
+[ext_resource type="Texture2D" uid="uid://htf6tgt28in0" path="res://Graphics/PC/Main Ship - Base - Full health.png" id="7_lm20s"]
+[ext_resource type="PackedScene" uid="uid://bjg3hwt6keb3y" path="res://Scenes/projectile_player_base.tscn" id="8_m2r2n"]
+[ext_resource type="Script" path="res://Scripts/shotsHandler.gd" id="9_2ddh4"]
+[ext_resource type="AudioStream" uid="uid://bobdqulpjjgd2" path="res://Sounds/SFX/laser_Player_base.mp3" id="11_d2flv"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0lof1"]
+a = Vector2(-320, 0)
+b = Vector2(280, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7dtfk"]
+a = Vector2(0, -384)
+b = Vector2(0, 416)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_qd4ro"]
+a = Vector2(0, -384)
+b = Vector2(0, 416)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_a6epx"]
+a = Vector2(-320, 0)
+b = Vector2(280, 0)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ihj04"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4w130"]
+atlas = ExtResource("7_lm20s")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3k2i6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4w130")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="MainGame" type="Node2D"]
+script = ExtResource("1_pm6lw")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = -1
+
+[node name="ParallaxLayer_4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 800)
+
+[node name="Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_4"]
+position = Vector2(304, 200)
+scale = Vector2(2.2, 2.5)
+texture = ExtResource("5_fs5qk")
+
+[node name="ParallaxLayer_6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 800)
+
+[node name="Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_6"]
+position = Vector2(296, 592)
+scale = Vector2(-2.2, -2.5)
+texture = ExtResource("5_fs5qk")
+
+[node name="ParallaxLayer_3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 850)
+
+[node name="Planets_Far" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_3"]
+position = Vector2(304, 640)
+scale = Vector2(2, 2)
+texture = ExtResource("4_dtvj2")
+
+[node name="ParallaxLayer_1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 800)
+
+[node name="Planet_Ring" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_1"]
+position = Vector2(216, 400)
+rotation = -0.47822
+texture = ExtResource("2_me67m")
+
+[node name="ParallaxLayer_2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 1400)
+
+[node name="Planet_Big" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_2"]
+position = Vector2(424, 184)
+rotation = -0.0872665
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_ll4lj")
+
+[node name="ParallaxLayer_5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 1000)
+
+[node name="Planet_Big_2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_5"]
+position = Vector2(24, 1008)
+rotation = 0.0698132
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_ll4lj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="Background" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(300, 400)
+scale = Vector2(2.20588, 5)
+texture = ExtResource("1_duhdd")
+
+[node name="border" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border"]
+position = Vector2(320, 0)
+shape = SubResource("SegmentShape2D_0lof1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="border"]
+position = Vector2(0, 384)
+shape = SubResource("SegmentShape2D_7dtfk")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="border"]
+position = Vector2(600, 384)
+shape = SubResource("SegmentShape2D_qd4ro")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="border"]
+position = Vector2(320, 800)
+shape = SubResource("SegmentShape2D_a6epx")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(304, 432)
+collision_mask = 27
+script = ExtResource("7_02nh3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+scale = Vector2(3, 2)
+shape = SubResource("CapsuleShape2D_ihj04")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_3k2i6")
+animation = &"idle"
+
+[node name="ShotCooldown" type="Timer" parent="Player"]
+wait_time = 0.5
+
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+offset_left = -28.0
+offset_top = 24.0
+offset_right = 28.0
+offset_bottom = 51.0
+
+[node name="shotsHandler" type="Node" parent="."]
+script = ExtResource("9_2ddh4")
+projectile_player_base = ExtResource("8_m2r2n")
+
+[node name="player_base" type="AudioStreamPlayer" parent="shotsHandler"]
+stream = ExtResource("11_d2flv")
+
+[connection signal="shoot" from="Player" to="shotsHandler" method="_on_player_shoot"]
+[connection signal="timeout" from="Player/ShotCooldown" to="Player" method="_on_shot_cooldown_timeout"]

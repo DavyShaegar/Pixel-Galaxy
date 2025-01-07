@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4id51xv63x0g"]
+
+[ext_resource type="Script" path="res://Scripts/Autoloads/level1.gd" id="1_00a5x"]
+[ext_resource type="PackedScene" uid="uid://btfdki80jpejt" path="res://Scenes/Instances/enemy_fighter.tscn" id="2_glkja"]
+[ext_resource type="PackedScene" uid="uid://b3ihxxc4cfooe" path="res://Scenes/Instances/enemy_heavy.tscn" id="3_1kqb8"]
+[ext_resource type="PackedScene" uid="uid://ckhcaotfnev0l" path="res://Scenes/Instances/enemy_battlecruiser.tscn" id="4_81tcm"]
+[ext_resource type="PackedScene" uid="uid://bo27y3j1824ue" path="res://Scenes/Instances/enemy_healer.tscn" id="5_b3dav"]
+
+[node name="Level1" type="Node"]
+script = ExtResource("1_00a5x")
+base_enemy = ExtResource("2_glkja")
+heavy_enemy = ExtResource("3_1kqb8")
+boss = ExtResource("4_81tcm")
+Healer = ExtResource("5_b3dav")
+
+[node name="FirstWave" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="FightersRando" type="Timer" parent="FirstWave"]
+
+[node name="FightersRows" type="Timer" parent="FirstWave"]
+wait_time = 20.0
+one_shot = true
+
+[node name="FighterRows_WaitRows" type="Timer" parent="FirstWave/FightersRows"]
+wait_time = 5.0
+
+[node name="FighterRows_Stop" type="Timer" parent="FirstWave/FightersRows"]
+wait_time = 30.0
+one_shot = true
+
+[node name="1STOP" type="Timer" parent="FirstWave"]
+wait_time = 30.0
+one_shot = true
+
+[node name="SecondWave" type="Node" parent="."]
+
+[node name="HeavySpawn" type="Timer" parent="SecondWave"]
+wait_time = 2.0
+
+[node name="Wave2Rando_Stop" type="Timer" parent="SecondWave"]
+wait_time = 40.0
+one_shot = true
+
+[node name="FighterRows2" type="Timer" parent="SecondWave"]
+wait_time = 10.0
+one_shot = true
+
+[node name="FighterRows_WaitRows2" type="Timer" parent="SecondWave/FighterRows2"]
+wait_time = 3.0
+
+[node name="FighterRows_Stop2" type="Timer" parent="SecondWave/FighterRows2"]
+wait_time = 30.0
+one_shot = true
+
+[node name="ThirdWave" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="BossSpawn" type="Timer" parent="ThirdWave"]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="FirstWave" to="." method="_on_first_wave_timeout"]
+[connection signal="timeout" from="FirstWave/FightersRando" to="." method="_on_fighters_rando_timeout"]
+[connection signal="timeout" from="FirstWave/FightersRows" to="." method="_on_fighters_rows_timeout"]
+[connection signal="timeout" from="FirstWave/FightersRows/FighterRows_WaitRows" to="." method="_on_fighter_rows_wait_rows_timeout"]
+[connection signal="timeout" from="FirstWave/FightersRows/FighterRows_Stop" to="." method="_on_fighter_rows_stop_timeout"]
+[connection signal="timeout" from="FirstWave/1STOP" to="." method="_on_stop_timeout"]
+[connection signal="timeout" from="SecondWave/HeavySpawn" to="." method="_on_heavy_spawn_timeout"]
+[connection signal="timeout" from="SecondWave/Wave2Rando_Stop" to="." method="_on_wave_2_rando_stop_timeout"]
+[connection signal="timeout" from="SecondWave/FighterRows2" to="." method="_on_fighter_rows_2_timeout"]
+[connection signal="timeout" from="SecondWave/FighterRows2/FighterRows_WaitRows2" to="." method="_on_fighter_rows_wait_rows_2_timeout"]
+[connection signal="timeout" from="SecondWave/FighterRows2/FighterRows_Stop2" to="." method="_on_fighter_rows_stop_2_timeout"]
+[connection signal="timeout" from="ThirdWave" to="." method="_on_third_wave_timeout"]
+[connection signal="timeout" from="ThirdWave/BossSpawn" to="." method="_on_boss_spawn_timeout"]

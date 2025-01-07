@@ -1,0 +1,112 @@
+[gd_scene load_steps=15 format=3 uid="uid://b3ihxxc4cfooe"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_heavy.gd" id="1_ac3is"]
+[ext_resource type="Texture2D" uid="uid://biuedut85jy21" path="res://Graphics/Enemies/Kla'ed - Heavy - Base.png" id="2_qkwpp"]
+[ext_resource type="Texture2D" uid="uid://4q1k3aipok3s" path="res://Graphics/Enemies/Deaths/Kla'ed - Frigate - Destruction.png" id="3_6yh6s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrk8i"]
+atlas = ExtResource("3_6yh6s")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4048c"]
+atlas = ExtResource("3_6yh6s")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlsxl"]
+atlas = ExtResource("3_6yh6s")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n516b"]
+atlas = ExtResource("3_6yh6s")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy5as"]
+atlas = ExtResource("3_6yh6s")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdnuh"]
+atlas = ExtResource("3_6yh6s")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uy1hk"]
+atlas = ExtResource("3_6yh6s")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyw1n"]
+atlas = ExtResource("3_6yh6s")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e113t"]
+atlas = ExtResource("3_6yh6s")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0463a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qkwpp")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrk8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4048c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlsxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n516b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wy5as")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdnuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uy1hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyw1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e113t")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tmnay"]
+radius = 16.0
+height = 48.0
+
+[node name="Enemy_Heavy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 133
+script = ExtResource("1_ac3is")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_0463a")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_tmnay")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 320)
+
+[node name="shotcooldown" type="Timer" parent="."]
+wait_time = 2.5
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="shotcooldown" to="." method="_on_shotcooldown_timeout"]

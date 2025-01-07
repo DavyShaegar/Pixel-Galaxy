@@ -1,0 +1,44 @@
+[gd_scene load_steps=14 format=3 uid="uid://w0d6wivnkh3k"]
+
+[ext_resource type="Script" path="res://Scripts/shotsHandler.gd" id="1_i788y"]
+[ext_resource type="PackedScene" uid="uid://bjg3hwt6keb3y" path="res://Scenes/Instances/Projectiles/projectile_player_base.tscn" id="2_me7t4"]
+[ext_resource type="AudioStream" uid="uid://bobdqulpjjgd2" path="res://Sounds/SFX/laser_Player_base.mp3" id="3_3gt3m"]
+[ext_resource type="PackedScene" uid="uid://dv247hrbk2f1a" path="res://Scenes/Instances/Projectiles/projectile_player_zapper.tscn" id="3_5gqw1"]
+[ext_resource type="PackedScene" uid="uid://dw1ky6hikw4b8" path="res://Scenes/Instances/Projectiles/projectile_enemy_base.tscn" id="3_7l35p"]
+[ext_resource type="PackedScene" uid="uid://ci4h53fotk2h1" path="res://Scenes/Instances/Projectiles/projectile_player_rocket.tscn" id="3_wm2i4"]
+[ext_resource type="PackedScene" uid="uid://be8wugngkjknp" path="res://Scenes/Instances/explosion_basic.tscn" id="4_ab75x"]
+[ext_resource type="PackedScene" uid="uid://c2n7oqr42ov45" path="res://Scenes/Instances/Projectiles/projectyle_enemy_heavy.tscn" id="4_o846n"]
+[ext_resource type="PackedScene" uid="uid://crtwo3cliusww" path="res://Scenes/Instances/Projectiles/projectile_enemy_boss_1.tscn" id="7_qd4h1"]
+[ext_resource type="PackedScene" uid="uid://4yv7ktyl3wsm" path="res://Scenes/Instances/Projectiles/projectile_enemy_rocket.tscn" id="8_gsmap"]
+[ext_resource type="AudioStream" uid="uid://deinw5f3u7t5o" path="res://Sounds/SFX/rocketstart.mp3" id="8_hwubb"]
+[ext_resource type="PackedScene" uid="uid://dyfb85y0wn5xk" path="res://Scenes/Instances/Projectiles/projectile_enemy_finalBoss.tscn" id="9_54jqj"]
+[ext_resource type="AudioStream" uid="uid://dmkl6ar81rudx" path="res://Sounds/SFX/railgun.mp3" id="10_88o4n"]
+
+[node name="shotsHandler" type="Node"]
+script = ExtResource("1_i788y")
+projectile_player_base = ExtResource("2_me7t4")
+projectile_player_zap = ExtResource("3_5gqw1")
+projectile_player_rock = ExtResource("3_wm2i4")
+projectile_enemy_base = ExtResource("3_7l35p")
+projectile_enemy_heavy = ExtResource("4_o846n")
+projectile_boss_battlecruiser = ExtResource("7_qd4h1")
+projectile_enemy_rock = ExtResource("8_gsmap")
+projectile_boss_dreadnought = ExtResource("9_54jqj")
+boom_simple = ExtResource("4_ab75x")
+
+[node name="player_base" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3gt3m")
+
+[node name="player_rocket" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_hwubb")
+volume_db = -2.0
+
+[node name="player_zapper" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_88o4n")
+
+[node name="RocketDelay" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="ZapperDelay" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true

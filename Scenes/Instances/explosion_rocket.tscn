@@ -1,0 +1,78 @@
+[gd_scene load_steps=17 format=3 uid="uid://dx2d8xr088qpp"]
+
+[ext_resource type="Script" path="res://Scripts/explosion_basic.gd" id="1_cjb6g"]
+[ext_resource type="Texture2D" uid="uid://dfht0uspho30l" path="res://Graphics/Effects/Rocket Explosion/1_6.png" id="3_5ny67"]
+[ext_resource type="Texture2D" uid="uid://dsrsbpc64nven" path="res://Graphics/Effects/Rocket Explosion/1_5.png" id="3_o48kg"]
+[ext_resource type="Texture2D" uid="uid://cn5bs53blwq2v" path="res://Graphics/Effects/Rocket Explosion/1_7.png" id="4_uptro"]
+[ext_resource type="Texture2D" uid="uid://spnvvxnbq50y" path="res://Graphics/Effects/Rocket Explosion/1_12.png" id="5_0025h"]
+[ext_resource type="Texture2D" uid="uid://bdkh0k0q4w3rg" path="res://Graphics/Effects/Rocket Explosion/1_9.png" id="5_52ioj"]
+[ext_resource type="Texture2D" uid="uid://cmfrirnd88q50" path="res://Graphics/Effects/Rocket Explosion/1_10.png" id="6_21yga"]
+[ext_resource type="Texture2D" uid="uid://bxlkc4b43thpv" path="res://Graphics/Effects/Rocket Explosion/1_11.png" id="7_saolb"]
+[ext_resource type="Texture2D" uid="uid://fbr6ssweyu7c" path="res://Graphics/Effects/Rocket Explosion/1_19.png" id="8_yd3g4"]
+[ext_resource type="Texture2D" uid="uid://dnjbgyyanqtr1" path="res://Graphics/Effects/Rocket Explosion/1_15.png" id="9_2npl1"]
+[ext_resource type="Texture2D" uid="uid://blaouupl6pvba" path="res://Graphics/Effects/Rocket Explosion/1_21.png" id="9_20dwf"]
+[ext_resource type="Texture2D" uid="uid://bgrl6226ohjcl" path="res://Graphics/Effects/Rocket Explosion/1_17.png" id="10_wdjb8"]
+[ext_resource type="Texture2D" uid="uid://dyiydc3qif6c7" path="res://Graphics/Effects/Rocket Explosion/1_18.png" id="11_yewt2"]
+[ext_resource type="Texture2D" uid="uid://7o1wjj0y5cvv" path="res://Graphics/Effects/Rocket Explosion/1_20.png" id="13_d50fh"]
+[ext_resource type="Texture2D" uid="uid://8kf7prard5ns" path="res://Graphics/Effects/Rocket Explosion/1_23.png" id="15_228th"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d6ivb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_o48kg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5ny67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uptro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_52ioj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_21yga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_saolb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0025h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2npl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wdjb8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_yewt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yd3g4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_d50fh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_20dwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_228th")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="ExplosionRocket" type="Node2D"]
+script = ExtResource("1_cjb6g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_d6ivb")
+frame = 13
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

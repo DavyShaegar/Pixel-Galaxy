@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://dv247hrbk2f1a"]
+
+[ext_resource type="Script" path="res://Scripts/projectile_player_zapper.gd" id="1_3yhn0"]
+[ext_resource type="Texture2D" uid="uid://cgdw1htrk28mg" path="res://Graphics/Effects/Main ship weapon - Projectile - Zapper.png" id="1_orwo1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw5jq"]
+atlas = ExtResource("1_orwo1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no556"]
+atlas = ExtResource("1_orwo1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kojl0"]
+atlas = ExtResource("1_orwo1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psldg"]
+atlas = ExtResource("1_orwo1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35upo"]
+atlas = ExtResource("1_orwo1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fyp3"]
+atlas = ExtResource("1_orwo1")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g1w3"]
+atlas = ExtResource("1_orwo1")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jbek"]
+atlas = ExtResource("1_orwo1")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q0r58"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw5jq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_no556")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kojl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psldg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35upo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fyp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5g1w3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jbek")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pq67"]
+size = Vector2(25.4375, 38)
+
+[node name="ProjectilePlayerZapper" type="Area2D"]
+collision_layer = 4
+collision_mask = 18
+script = ExtResource("1_3yhn0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4, 1.2)
+sprite_frames = SubResource("SpriteFrames_q0r58")
+autoplay = "default"
+frame_progress = 0.409369
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8pq67")
+
+[node name="ZapResetTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

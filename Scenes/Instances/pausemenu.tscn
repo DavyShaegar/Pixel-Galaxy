@@ -1,0 +1,104 @@
+[gd_scene load_steps=4 format=3 uid="uid://cem3tx1ip7faa"]
+
+[ext_resource type="Script" path="res://Scripts/pausemenu.gd" id="1_i0h41"]
+[ext_resource type="FontFile" uid="uid://bqryjkuqu52d6" path="res://Graphics/Styles/ethnocentric rg.otf" id="2_nk7kc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ywy0"]
+bg_color = Color(0.0588235, 0.0588235, 0.356863, 0.698039)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Pausemenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 800.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i0h41")
+
+[node name="panel_container" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = -192.0
+offset_top = -128.0
+offset_right = 192.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ywy0")
+
+[node name="CenterContainer" type="CenterContainer" parent="panel_container"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="panel_container/CenterContainer"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="panel_container/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("2_nk7kc")
+theme_override_font_sizes/font_size = 30
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="panel_container/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 15
+text = "If you quit before completing the level or a game over
+you will lose your progress"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="panel_container/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="panel_container/CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Resume" type="Button" parent="panel_container/CenterContainer/VBoxContainer/HBoxContainer/BoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_nk7kc")
+text = "Resume"
+
+[node name="BoxContainer2" type="BoxContainer" parent="panel_container/CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+alignment = 2
+
+[node name="Quit" type="Button" parent="panel_container/CenterContainer/VBoxContainer/HBoxContainer/BoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_nk7kc")
+text = "Main Menu"
+
+[connection signal="pressed" from="panel_container/CenterContainer/VBoxContainer/HBoxContainer/BoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="panel_container/CenterContainer/VBoxContainer/HBoxContainer/BoxContainer2/Quit" to="." method="_on_quit_pressed"]

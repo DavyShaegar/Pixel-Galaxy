@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://cm7gdngkciohy"]
+
+[ext_resource type="Script" path="res://Scripts/Autoloads/level3.gd" id="1_kpfwy"]
+[ext_resource type="PackedScene" uid="uid://btfdki80jpejt" path="res://Scenes/Instances/enemy_fighter.tscn" id="2_7qcjs"]
+[ext_resource type="PackedScene" uid="uid://bs84y7g1caou" path="res://Scenes/Instances/enemy_dreadnought.tscn" id="2_odaxa"]
+[ext_resource type="PackedScene" uid="uid://b3ihxxc4cfooe" path="res://Scenes/Instances/enemy_heavy.tscn" id="3_30biv"]
+[ext_resource type="PackedScene" uid="uid://ckhcaotfnev0l" path="res://Scenes/Instances/enemy_battlecruiser.tscn" id="4_r2hf0"]
+[ext_resource type="PackedScene" uid="uid://bo27y3j1824ue" path="res://Scenes/Instances/enemy_healer.tscn" id="5_m615l"]
+[ext_resource type="PackedScene" uid="uid://db2s2ihp675l6" path="res://Scenes/Instances/enemy_torpedo.tscn" id="6_hnqhk"]
+
+[node name="Level3" type="Node"]
+script = ExtResource("1_kpfwy")
+final_Boss = ExtResource("2_odaxa")
+base_enemy = ExtResource("2_7qcjs")
+heavy_enemy = ExtResource("3_30biv")
+boss = ExtResource("4_r2hf0")
+Healer = ExtResource("5_m615l")
+Enemy_Rocket = ExtResource("6_hnqhk")
+
+[node name="Wave1_Start" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Fighter_rando_1" type="Timer" parent="Wave1_Start"]
+wait_time = 0.8
+
+[node name="Fighter_Row_1" type="Timer" parent="Wave1_Start"]
+wait_time = 2.5
+
+[node name="Heavy_Rando_lowcount_1" type="Timer" parent="Wave1_Start"]
+wait_time = 2.0
+
+[node name="Healer_rando_1" type="Timer" parent="Wave1_Start"]
+wait_time = 3.0
+
+[node name="endwave" type="Timer" parent="Wave1_Start"]
+
+[node name="Wave2_start" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Fighter_rando_2" type="Timer" parent="Wave2_start"]
+wait_time = 0.3
+
+[node name="Heavy_Row_1" type="Timer" parent="Wave2_start"]
+wait_time = 5.0
+
+[node name="endwave_2" type="Timer" parent="Wave2_start"]
+wait_time = 60.0
+
+[node name="Wave3_FinalBoss" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="Wave1_Start" to="." method="_on_wave_1_start_timeout"]
+[connection signal="timeout" from="Wave1_Start/Fighter_rando_1" to="." method="_on_fighter_rando_1_timeout"]
+[connection signal="timeout" from="Wave1_Start/Fighter_Row_1" to="." method="_on_fighter_row_1_timeout"]
+[connection signal="timeout" from="Wave1_Start/Heavy_Rando_lowcount_1" to="." method="_on_heavy_rando_lowcount_1_timeout"]
+[connection signal="timeout" from="Wave1_Start/Healer_rando_1" to="." method="_on_healer_rando_1_timeout"]
+[connection signal="timeout" from="Wave1_Start/endwave" to="." method="_on_endwave_timeout"]
+[connection signal="timeout" from="Wave2_start" to="." method="_on_wave_2_start_timeout"]
+[connection signal="timeout" from="Wave2_start/Fighter_rando_2" to="." method="_on_fighter_rando_2_timeout"]
+[connection signal="timeout" from="Wave2_start/Heavy_Row_1" to="." method="_on_heavy_row_1_timeout"]
+[connection signal="timeout" from="Wave2_start/endwave_2" to="." method="_on_endwave_2_timeout"]
+[connection signal="timeout" from="Wave3_FinalBoss" to="." method="_on_wave_3_final_boss_timeout"]
