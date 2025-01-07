@@ -1,0 +1,20 @@
+Backgrounds created from "Pixel Space Background Generator" by Deep-Fold : 
+https://github.com/Deep-Fold/PixelSpace ;
+
+Player ship and Enemy ships from "Void" by Foozle : 
+https://foozlecc.itch.io/void-main-ship ; 
+https://foozlecc.itch.io/void-fleet-pack-1 ;
+
+Lasers projectiles from "Assets Free Laser Bullets Pack 2020" by Wenrexa :
+https://wenrexa.itch.io/laser2020 ;
+
+Health, Invulnerability Icons from "Free Space Shooter Game User Interface" by Free Game Assets :
+https://free-game-assets.itch.io/free-space-shooter-game-user-interface ;
+
+Explosions from "Explosion Animations Pack" by Ansimuz : 
+https://ansimuz.itch.io/explosion-animations-pack;
+
+Music from "DOS-88 Synthwave Music Library" by DOS88 : 
+https://dos88.itch.io/dos-88-music-library ;
+
+Various SFX from Pixalbay;
