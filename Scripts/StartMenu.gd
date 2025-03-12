@@ -1,6 +1,6 @@
 extends Control
 @onready var stars = $FrontLayer/Sprite2D
-@onready var stars_zoom : bool = true
+@onready var stars_sPos = stars.position
 @onready var ui_container : Node = $UILayer/UIMenuButtons
 @export var Buttons : PackedScene
 
@@ -12,6 +12,13 @@ extends Control
 
 enum menus {main, options, option_graphics, option_sounds, option_controls, stats, playmodes}
 @onready var current_menu = menus.main
+
+func background_animation() -> void:
+	var tween: Tween = create_tween().set_loops()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(stars, "scale", Vector2(1.25, 1.25), 60.0).from_current()
+	tween.tween_property(stars, "scale", Vector2(1, 1), 60.0)
 
 func load_profiles_menu():
 	var all_profiles : Dictionary = ScoreHandler.get_profiles()
@@ -29,6 +36,9 @@ func clear_profiles_menu(menu : Node):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Background
+	background_animation()
+	
 	var main_buttons = Buttons.instantiate()
 	ui_container.add_child(main_buttons)
 	GameSounds.change_music(self)
@@ -36,17 +46,9 @@ func _ready():
 	# add all profiles to the list when loading for the first time
 	load_profiles_menu()
 		
-func _process(delta):
-	# Background
-	if stars_zoom == true:
-		stars.scale += Vector2(0.005 * delta, 0.005 * delta)
-		if stars.scale >= Vector2(1.25, 1.25):
-			stars_zoom = false
-	else:
-		stars.scale -= Vector2(0.005 * delta, 0.005 * delta)
-		if stars.scale <= Vector2(0.99, 0.99):
-			stars_zoom = true
-			
+func _process(_delta):
+
+	
 	# Menu Behaviour handler
 	match current_menu:
 		menus.main:

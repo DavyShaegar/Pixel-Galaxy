@@ -1,4 +1,10 @@
 extends Node
+func _notification(what):
+	if what == NOTIFICATION_APPLICATION_FOCUS_IN:
+		get_tree().paused = false
+	elif what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		get_tree().paused = true
+
 func get_player() -> Node:
 	if LevelHandler.current_level != "":
 		return get_node("/root/MainGame/Player")

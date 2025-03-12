@@ -3,6 +3,7 @@ extends Control
 @export var sounds : PackedScene
 @export var controls : PackedScene
 @onready var _mainmenu : Node = get_node("/root/MainMenu")
+@onready var options_opened: Array = []
 
 func _on_back_pressed():
 	_mainmenu.current_menu = _mainmenu.menus.main
@@ -15,7 +16,9 @@ func _on_graphics_pressed():
 	
 	GameSounds.menu_select.play()
 	
-	if get_node("/root/MainMenu/UILayer/UIMenuButtons/options_graphics") != null: return
+	if "graphics" in options_opened: return
+	
+	options_opened.append("graphics")
 	var graphics_insta = graphics.instantiate()
 	graphics_insta.global_position -= Vector2(50,0)
 	add_sibling(graphics_insta)
@@ -27,7 +30,9 @@ func _on_sounds_pressed():
 	
 	GameSounds.menu_select.play()
 	
-	if get_node("/root/MainMenu/UILayer/UIMenuButtons/options_sounds") != null: return
+	if "sounds" in options_opened: return
+	
+	options_opened.append("sounds")
 	var sounds_insta = sounds.instantiate()
 	sounds_insta.global_position -= Vector2(50,0)
 	add_sibling(sounds_insta)
@@ -39,7 +44,9 @@ func _on_controls_pressed():
 	
 	GameSounds.menu_select.play()
 	
-	if get_node("/root/MainMenu/UILayer/UIMenuButtons/options_controls") != null: return
+	if "sounds" in options_opened: return
+	
+	options_opened.append("sounds")
 	var controls_insta = controls.instantiate()
 	controls_insta.global_position -= Vector2(50,0)
 	add_sibling(controls_insta)

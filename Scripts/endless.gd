@@ -33,12 +33,17 @@ func _ready():
 
 func _process(_delta):
 	
+	$ParallaxBackground/ParallaxLayer_4.motion_offset += Vector2(0.0, 0.05)
+	$ParallaxBackground/ParallaxLayer_6.motion_offset += Vector2(0.0, 0.025)
+	$ParallaxBackground/ParallaxLayer_3.motion_offset += Vector2(0.0, 0.1)
+	
 	if hours != 0:
 		time.text = "Time: " + str(hours)+ " : " +str(minutes) + " : " + str(floor(seconds.wait_time) - floor(seconds.time_left))
 	elif minutes != 0:
 		time.text = "Time: " + str(minutes) + " : " + str(floor(seconds.wait_time) - floor(seconds.time_left))
 	else:
 		time.text = "Time: " + str(floor(seconds.wait_time) - floor(seconds.time_left))
+
 
 
 func _on_seconds_timeout():

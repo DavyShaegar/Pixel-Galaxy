@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://diqwy5b33riv2" path="res://Scenes/Instances/player.tscn" id="1_l0haa"]
 [ext_resource type="Texture2D" uid="uid://myru4tvq4xcw" path="res://Graphics/Background/Endless/Dust.png" id="1_ycd60"]
-[ext_resource type="Script" path="res://Scripts/endless.gd" id="1_yq1gr"]
+[ext_resource type="Script" uid="uid://bi4ud0xhjsqi7" path="res://Scripts/endless.gd" id="1_yq1gr"]
 [ext_resource type="Texture2D" uid="uid://x8qxbhpi8trm" path="res://Graphics/Background/Endless/Nebula.png" id="2_8mkd5"]
 [ext_resource type="Texture2D" uid="uid://cm75nvltmc5x1" path="res://Graphics/Background/Endless/Planets.png" id="3_u5lm2"]
 [ext_resource type="Texture2D" uid="uid://djcqfn5eu7m3u" path="res://Graphics/Background/Endless/Background.png" id="5_k3ec2"]
@@ -100,12 +100,15 @@ position = Vector2(300, 162)
 shape = SubResource("RectangleShape2D_fxh1l")
 
 [node name="Boss_Stop_Left" type="Marker2D" parent="BossArea"]
+unique_name_in_owner = true
 position = Vector2(64, 146)
 
 [node name="Boss_Stop_Middle" type="Marker2D" parent="BossArea"]
+unique_name_in_owner = true
 position = Vector2(300, 146)
 
 [node name="Boss_Stop_Right" type="Marker2D" parent="BossArea"]
+unique_name_in_owner = true
 position = Vector2(544, 146)
 
 [node name="DespawnArea" type="Area2D" parent="."]

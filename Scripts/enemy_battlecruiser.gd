@@ -2,18 +2,19 @@ extends Enemy
 class_name Enemy_Boss_1
 @onready var stop : bool = false
 
-@onready var boss_stop_left = $"../BossArea/Boss_Stop_Left"
-@onready var boss_stop_middle = $"../BossArea/Boss_Stop_Middle"
-@onready var boss_stop_right = $"../BossArea/Boss_Stop_Right"
+@onready var boss_stop_left: Marker2D = %Boss_Stop_Left
+@onready var boss_stop_middle: Marker2D = %Boss_Stop_Middle
+@onready var boss_stop_right: Marker2D = %Boss_Stop_Right
+
 @onready var movecooldown = $movecooldown
 @onready var next_move : int
 @onready var should_move : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if LevelHandler.get_current_level() == null:
-		boss_stop_left = get_node("/root/Endless/BossArea/Boss_Stop_Left")
-		boss_stop_middle = get_node("/root/Endless/BossArea/Boss_Stop_Middle")
-		boss_stop_right = get_node("/root/Endless/BossArea/Boss_Stop_Right")
+	"""if LevelHandler.get_current_level() == null:
+		boss_stop_left = %Boss_Stop_Left
+		boss_stop_middle = %Boss_Stop_Middle
+		boss_stop_right = %Boss_Stop_Right"""
 	health = 30
 	speed = 75
 	base_score_points = 300

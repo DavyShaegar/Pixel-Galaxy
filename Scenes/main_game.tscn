@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://u7pl5b7w7qwv"]
 
-[ext_resource type="Script" path="res://Scripts/main_game.gd" id="1_fyft7"]
+[ext_resource type="Script" uid="uid://do0ge2ckmkj65" path="res://Scripts/main_game.gd" id="1_fyft7"]
 [ext_resource type="Texture2D" uid="uid://bjjd6rol7f6qv" path="res://Graphics/Background/parallax-space-stars.png" id="3_fphov"]
 [ext_resource type="Texture2D" uid="uid://hwnvnbyaylb5" path="res://Graphics/Background/parallax-space-far-planets.png" id="4_fkrwo"]
 [ext_resource type="Texture2D" uid="uid://bhm18voq7pi82" path="res://Graphics/Background/parallax-space-ring-planet.png" id="5_ikncv"]
@@ -167,12 +167,15 @@ position = Vector2(300, 162)
 shape = SubResource("RectangleShape2D_bw1oh")
 
 [node name="Boss_Stop_Left" type="Marker2D" parent="BossArea"]
+unique_name_in_owner = true
 position = Vector2(64, 146)
 
 [node name="Boss_Stop_Middle" type="Marker2D" parent="BossArea"]
+unique_name_in_owner = true
 position = Vector2(300, 146)
 
 [node name="Boss_Stop_Right" type="Marker2D" parent="BossArea"]
+unique_name_in_owner = true
 position = Vector2(544, 146)
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
